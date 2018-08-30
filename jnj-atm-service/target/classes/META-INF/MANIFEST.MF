@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: imartinr
+Build-Jdk: 10.0.1
+Implementation-Title: jnj-atm-service
+Implementation-Version: 1.0.0-SNAPSHOT
+Implementation-Vendor-Id: com.irealmar
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/jnj-atm-service
+Created-By: Maven Integration for Eclipse
+
