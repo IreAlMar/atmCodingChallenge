@@ -1,8 +1,6 @@
 package com.irealmar.controller;
 
 import static org.junit.Assert.assertEquals;
-
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -17,7 +15,7 @@ import com.irealmar.service.InvalidAccountException;
 import com.irealmar.service.InvalidPinException;
 
 /**
- * TODO: documentar.
+ * Test class for BalanceController.
  */
 @RunWith(MockitoJUnitRunner.class)
 public class BalanceControllerTest {
@@ -28,28 +26,19 @@ public class BalanceControllerTest {
     private BalanceController balanceController;
 
     /**
-     * Prepare test mock.
-     * @throws InvalidPinException
-     *         exception thrown in case of invalid pin
-     * @throws InvalidAccountException
-     *         exception thrown in case of invalid account number
-     */
-    @Before
-    public void prepareMocks() throws InvalidPinException, InvalidAccountException {
-        Mockito.when(balanceService.checkBalance(Mockito.intThat(x -> x > 0), Mockito
-            .longThat(x -> x > 0))).thenReturn(500.0);
-        Mockito.when(balanceService.checkBalance(Mockito.intThat(x -> x <= 0), Mockito.anyLong())).thenThrow(
-            new InvalidPinException());
-        Mockito.when(balanceService.checkBalance(Mockito.anyInt(), Mockito.longThat(x -> x <= 0)))
-            .thenThrow(
-                new InvalidAccountException());
-    }
-
-    /**
      * Successful balance check.
      */
     @Test
     public void getBalanceOKTest() {
+        try {
+            Mockito.when(balanceService.checkBalance(1234, Long.valueOf(20182018))).thenReturn(500.0);
+        } catch (InvalidPinException ex) {
+            // TODO Auto-generated catch block
+            ex.printStackTrace();
+        } catch (com.irealmar.service.InvalidAccountException ex) {
+            // TODO Auto-generated catch block
+            ex.printStackTrace();
+        }
         BalanceResponse balanceResult = new BalanceResponse(500.0, "OK");
         ResponseEntity<BalanceResponse> spectedResponse = new ResponseEntity<>(balanceResult, HttpStatus.OK);
         ResponseEntity<BalanceResponse> response = balanceController.getBalance(1234, Long.valueOf(20182018));
@@ -64,6 +53,16 @@ public class BalanceControllerTest {
      */
     @Test
     public void getBalanceInvalidAccountTest() {
+        try {
+            Mockito.when(balanceService.checkBalance(-1234, Long.valueOf(20182018))).thenThrow(
+                new InvalidPinException());
+        } catch (InvalidPinException ex) {
+            // TODO Auto-generated catch block
+            ex.printStackTrace();
+        } catch (com.irealmar.service.InvalidAccountException ex) {
+            // TODO Auto-generated catch block
+            ex.printStackTrace();
+        }
         BalanceResponse balanceResult = new BalanceResponse(0, "Invalid pin");
         ResponseEntity<BalanceResponse> spectedResponse = new ResponseEntity<>(balanceResult, HttpStatus.OK);
         ResponseEntity<BalanceResponse> response = balanceController.getBalance(-1234, Long.valueOf(20182018));
@@ -78,7 +77,16 @@ public class BalanceControllerTest {
      */
     @Test
     public void InvalidAccountException() {
-
+        try {
+            Mockito.when(balanceService.checkBalance(1234, Long.valueOf(-20182018))).thenThrow(
+                new InvalidAccountException());
+        } catch (InvalidPinException ex) {
+            // TODO Auto-generated catch block
+            ex.printStackTrace();
+        } catch (com.irealmar.service.InvalidAccountException ex) {
+            // TODO Auto-generated catch block
+            ex.printStackTrace();
+        }
         BalanceResponse balanceResult = new BalanceResponse(0, "Invalid account");
         ResponseEntity<BalanceResponse> spectedResponse = new ResponseEntity<>(balanceResult, HttpStatus.OK);
         ResponseEntity<BalanceResponse> response = balanceController.getBalance(1234, Long.valueOf(-20182018));

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.irealmar.model.Greeting;
+import com.irealmar.dbaccess.Greeting;
 import com.irealmar.service.CounterLogic;
 
 //TODO: DELETE ME!

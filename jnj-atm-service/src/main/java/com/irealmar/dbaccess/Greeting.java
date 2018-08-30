@@ -1,4 +1,4 @@
-package com.irealmar.model;
+package com.irealmar.dbaccess;
 
 /**
  * TODO: documentar.

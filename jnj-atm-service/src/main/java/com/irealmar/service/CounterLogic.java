@@ -1,6 +1,6 @@
 package com.irealmar.service;
 
-import com.irealmar.model.Counter;
+import com.irealmar.dbaccess.Counter;
 
 //TODO: DELETE ME!
 
