@@ -1,4 +1,4 @@
-package com.irealmar.app;
+package com.irealmar;
 
 /**
  * TODO: documentar.
@@ -18,7 +18,7 @@ import com.irealmar.controller.*;
  * @since _TBD_
  */
 @SpringBootApplication
-@ComponentScan(basePackageClasses=GreetingController.class)
+@ComponentScan({"com.irealmar.controller", "com.irealmar.service", "com.irealmar.service.impl"})
 public class Application {
 
     /**

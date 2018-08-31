@@ -1,8 +1,12 @@
 package com.irealmar.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.irealmar.service.IBalanceService;
 import com.irealmar.service.InvalidAccountException;
@@ -11,6 +15,8 @@ import com.irealmar.service.InvalidPinException;
 /**
  * TODO: documentar.
  */
+@RestController
+@EnableAutoConfiguration
 public class BalanceController {
     @Autowired
     private IBalanceService balanceService;
@@ -24,7 +30,9 @@ public class BalanceController {
      * @return Response with the balance if the operation was successful and the result code of the operation to be
      *         interpreted by the client.
      */
-    public ResponseEntity<BalanceResponse> getBalance(int pin, Long accountNumber) {
+    @RequestMapping("/getBalance")
+    public ResponseEntity<BalanceResponse> getBalance(@RequestParam(defaultValue = "-1") int pin, @RequestParam(
+        defaultValue = "-1") Long accountNumber) {
         BalanceResponse balanceResponse = null;
 
         try {

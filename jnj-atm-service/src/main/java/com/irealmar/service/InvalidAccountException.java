@@ -1,7 +1,3 @@
-/**
- * Copyright (C) 2017 Minsait
- * All rights reserved
- **/
 package com.irealmar.service;
 
 /**

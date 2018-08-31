@@ -1,5 +1,7 @@
 package com.irealmar.service.impl;
 
+import org.springframework.stereotype.Service;
+
 import com.irealmar.dbaccess.Client;
 import com.irealmar.dbaccess.ClientDDBB;
 import com.irealmar.dbaccess.TransactionDDBB;
@@ -10,6 +12,7 @@ import com.irealmar.service.InvalidPinException;
 /**
  * TODO: documentar.
  */
+@Service
 public class BalanceService implements IBalanceService {
     // @Autowired TODO: any way to use autowired? Why do the test explode when using autowired? Because ClietnDDBB is
     // not initialized, but why?
@@ -26,7 +29,7 @@ public class BalanceService implements IBalanceService {
 
         } else {
             Client client = clientDDBB.getClient(accountNumber);
-            if (client.getPin() != pin) {
+            if (client != null && client.getPin() != pin) {
                 throw new InvalidPinException();
 
             } else {

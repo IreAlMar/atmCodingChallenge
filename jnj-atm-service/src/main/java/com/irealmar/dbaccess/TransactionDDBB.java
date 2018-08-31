@@ -1,28 +1,28 @@
 package com.irealmar.dbaccess;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Hashtable;
-import java.util.List;
 import java.util.Map;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 /**
  * TODO: documentar.
  */
 public class TransactionDDBB {
     private static TransactionDDBB transactionDDBB = new TransactionDDBB();
-    private Map<Long, List<Transaction>> transactions;
+    private Map<Long, SortedSet<Transaction>> transactions;
 
     private TransactionDDBB() {
-        transactions = new Hashtable<Long, List<Transaction>>();
-        List<Transaction> clientTransactions1 = new ArrayList<Transaction>();
+        transactions = new Hashtable<Long, SortedSet<Transaction>>();
+        SortedSet<Transaction> clientTransactions1 = new TreeSet<Transaction>();
         // Initial balance August 28, 2018 11:38:41 AM
         clientTransactions1.add(new Transaction(new Date(1535456321), 800.0));
         // transaction of +200.0 August 31, 2018 11:37:02 AM
         clientTransactions1.add(new Transaction(new Date(1535715422), 1000.0));
         transactions.put(Long.valueOf(123456789), clientTransactions1);
 
-        List<Transaction> clientTransactions2 = new ArrayList<Transaction>();
+        SortedSet<Transaction> clientTransactions2 = new TreeSet<Transaction>();
         // Initial balance Thursday, July 5, 2018 11:38:41 AM
         clientTransactions2.add(new Transaction(new Date(1530790721), 1230.0));
         // transaction of -530.0 August 5, 2018 11:38:41 AM
@@ -48,13 +48,13 @@ public class TransactionDDBB {
      * @return the balance after the last transaction
      */
     public Double getLastResultBalance(Long accountNumber) {
-        List<Transaction> clientTransactions = getClientTransactions(accountNumber);
+        SortedSet<Transaction> clientTransactions = getClientTransactions(accountNumber);
 
-        return clientTransactions.get(clientTransactions.size() - 1).getResultBalance();
+        return clientTransactions.last().getResultBalance();
     }
 
     // TODO: throw invalid account in the upper layer
-    private List<Transaction> getClientTransactions(Long accountNumber) {
+    private SortedSet<Transaction> getClientTransactions(Long accountNumber) {
         return transactions.get(accountNumber);
     }
 

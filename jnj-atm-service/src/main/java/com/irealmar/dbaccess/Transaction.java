@@ -25,11 +25,11 @@ public class Transaction implements Comparable<Transaction> {
     @Override
     /**
      * Compares two transaction depending on the Date of the transaction.
-     * @return a value less than 0 if this transaction Date is before the Date from the argument transaction; and a
-     *         value greater than 0 if this transaction Date is after the Date from the argument transaction
+     * @return a value greater than 0 if this transaction Date is before the Date from the argument transaction; and a
+     *         value less than 0 if this transaction Date is after the Date from the argument transaction
      */
     public int compareTo(Transaction transaction) {
-        return transaction.getDate().compareTo(this.date);
+        return this.date.compareTo(transaction.getDate());
     }
 
     /**
