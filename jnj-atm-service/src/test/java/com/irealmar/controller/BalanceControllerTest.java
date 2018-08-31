@@ -33,10 +33,8 @@ public class BalanceControllerTest {
         try {
             Mockito.when(balanceService.checkBalance(1234, Long.valueOf(20182018))).thenReturn(500.0);
         } catch (InvalidPinException ex) {
-            // TODO Auto-generated catch block
             ex.printStackTrace();
-        } catch (com.irealmar.service.InvalidAccountException ex) {
-            // TODO Auto-generated catch block
+        } catch (InvalidAccountException ex) {
             ex.printStackTrace();
         }
         BalanceResponse balanceResult = new BalanceResponse(500.0, "OK");
@@ -57,10 +55,8 @@ public class BalanceControllerTest {
             Mockito.when(balanceService.checkBalance(-1234, Long.valueOf(20182018))).thenThrow(
                 new InvalidPinException());
         } catch (InvalidPinException ex) {
-            // TODO Auto-generated catch block
             ex.printStackTrace();
-        } catch (com.irealmar.service.InvalidAccountException ex) {
-            // TODO Auto-generated catch block
+        } catch (InvalidAccountException ex) {
             ex.printStackTrace();
         }
         BalanceResponse balanceResult = new BalanceResponse(0, "Invalid pin");
@@ -76,15 +72,13 @@ public class BalanceControllerTest {
      * Invalid account balance check.
      */
     @Test
-    public void InvalidAccountException() {
+    public void getBalanceInvalidAccountExceptionTest() {
         try {
             Mockito.when(balanceService.checkBalance(1234, Long.valueOf(-20182018))).thenThrow(
                 new InvalidAccountException());
         } catch (InvalidPinException ex) {
-            // TODO Auto-generated catch block
             ex.printStackTrace();
-        } catch (com.irealmar.service.InvalidAccountException ex) {
-            // TODO Auto-generated catch block
+        } catch (InvalidAccountException ex) {
             ex.printStackTrace();
         }
         BalanceResponse balanceResult = new BalanceResponse(0, "Invalid account");

@@ -17,6 +17,7 @@ import com.irealmar.service.InvalidPinException;
  */
 @RestController
 @EnableAutoConfiguration
+@RequestMapping("/atm/balance")
 public class BalanceController {
     @Autowired
     private IBalanceService balanceService;
