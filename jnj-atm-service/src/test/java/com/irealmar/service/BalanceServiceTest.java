@@ -22,7 +22,7 @@ public class BalanceServiceTest {
      * TODO: documentar.
      */
     @Test
-    public void getBalanceOKTest() {
+    public void getBalanceSucceedTest() {
         Double balance = null;
         try {
             balance = balanceService.checkBalance(1234, Long.valueOf(123456789));

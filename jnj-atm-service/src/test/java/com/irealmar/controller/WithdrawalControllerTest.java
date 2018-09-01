@@ -30,7 +30,7 @@ public class WithdrawalControllerTest {
      * Successful maximum withdrawal check.
      */
     @Test
-    public void getMaximumWithdrawalOKTest() {
+    public void getMaximumWithdrawalSuceedTest() {
         try {
             Mockito.when(withdrawalService.getMaximumWithdrawal(1234, Long.valueOf(20182018))).thenReturn(1200.0);
         } catch (InvalidPinException ex) {

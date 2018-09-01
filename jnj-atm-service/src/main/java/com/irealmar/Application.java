@@ -14,12 +14,18 @@ import org.springframework.context.annotation.ComponentScan;
  * TODO: documentar.
  */
 @SpringBootApplication
-@ComponentScan({"com.irealmar.controller", "com.irealmar.service", "com.irealmar.service.impl"})
+@ComponentScan({
+    "com.irealmar.controller",
+    "com.irealmar.service",
+    "com.irealmar.service.impl",
+    "com.irealmar.dbaccess"
+})
 public class Application {
 
     /**
      * TODO: documentar.
-     * @param args args
+     * @param args
+     *        args
      */
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);

@@ -2,4 +2,5 @@
 <con:soapui-workspace name="jnj-atm" soapui-version="5.4.0" xmlns:con="http://eviware.com/soapui/config">
   <con:settings/>
   <con:project name="jnj-atm-request">D:/projects/workspaces/maresypinos/imrjnj/jnjatm/jnj-atm-mock/jnj-atm-request-soapui-project.xml</con:project>
+  <con:collectInfoForSupport>false</con:collectInfoForSupport>
 </con:soapui-workspace>

@@ -14,13 +14,9 @@ import com.irealmar.service.InvalidPinException;
  */
 @Service
 public class BalanceService implements IBalanceService {
-    // @Autowired TODO: any way to use autowired? Why do the test explode when using autowired? Because ClietnDDBB is
-    // not initialized, but why?
-    private ClientDDBB clientDDBB = ClientDDBB.getClientDDBBInstance();
-    private TransactionDDBB transactionDDBB = TransactionDDBB.getTransactionDDBBInstance();
 
-    // @Autowired
-    // private ClientDDBB clientDDBB;
+    private TransactionDDBB transactionDDBB = TransactionDDBB.getTransactionDDBBInstance();
+    private ClientDDBB clientDDBB = ClientDDBB.getClientDDBBInstance();
 
     @Override
     public Double checkBalance(int pin, Long accountNumber) throws InvalidPinException, InvalidAccountException {
