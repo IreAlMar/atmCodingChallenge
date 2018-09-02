@@ -62,6 +62,7 @@ public class WithdrawalServiceTest {
         Double maximumWithdrawal = withdrawalService.getMaximumWithdrawal(pin, Long.valueOf(accountNumber));
         assertEquals(expectedMaximumWithdrawal, maximumWithdrawal, 0.0);
     }
+    // TODO: more test cases.
 
     /**
      * TODO: documentar.

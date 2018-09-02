@@ -27,6 +27,18 @@ public class WithdrawalService implements IWithdrawalService {
     @Autowired
     private IBalanceService balanceService;
 
+    /**
+     * Request maximum possible withdrawal counting with the ATM available notes.
+     * @param pin
+     *        the pin number
+     * @param accountNumber
+     *        the account number corresponding to the pin number
+     * @return maximum withdrawal amount
+     * @throws InvalidPinException
+     *         Exception
+     * @throws InvalidAccountException
+     *         Exception
+     */
     @Override
     public Double getMaximumWithdrawal(int pin, Long accountNumber) throws InvalidPinException,
         InvalidAccountException {
@@ -55,6 +67,12 @@ public class WithdrawalService implements IWithdrawalService {
         TreeMap<Integer, Integer> withdrawalNotes = cashContainer.calculateWithdrawal(new Double(clientBalance
             + overdraft).intValue());
         return new Double(withdrawalNotes.entrySet().stream().mapToInt(e -> e.getKey() * e.getValue()).sum());
+    }
+
+    @Override
+    public  TreeMap<Integer, Integer>  dispenseFunds(int pin, Long accountNumber) {
+        // TODO Implement
+        throw new UnsupportedOperationException("Not yet implemented");
     }
 
 }
