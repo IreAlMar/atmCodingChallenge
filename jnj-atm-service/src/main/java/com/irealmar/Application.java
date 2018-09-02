@@ -1,11 +1,5 @@
 package com.irealmar;
 
-/**
- * TODO: documentar.
- * @version _TBD_
- * @since _TBD_
- */
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
@@ -18,7 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
     "com.irealmar.controller",
     "com.irealmar.service",
     "com.irealmar.service.impl",
-    "com.irealmar.dbaccess"
+    "com.irealmar.repository"
 })
 public class Application {
 

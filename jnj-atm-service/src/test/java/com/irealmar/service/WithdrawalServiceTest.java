@@ -1,47 +1,44 @@
 package com.irealmar.service;
 
-import static org.easymock.EasyMock.expect;
 import static org.junit.Assert.assertEquals;
-import static org.powermock.api.easymock.PowerMock.mockStatic;
-import static org.powermock.api.easymock.PowerMock.replayAll;
-import static org.powermock.api.easymock.PowerMock.verifyAll;
 
-import org.junit.Before;
+import java.util.Collections;
+import java.util.TreeMap;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.powermock.api.easymock.annotation.Mock;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
+import org.mockito.InjectMocks;
 
-import com.irealmar.dbaccess.Client;
-import com.irealmar.dbaccess.ClientDDBB;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.Mock;
+
+import com.irealmar.repository.CashContainer;
+import com.irealmar.repository.Client;
+import com.irealmar.repository.ClientContainer;
 import com.irealmar.service.impl.WithdrawalService;
 
 /**
  * TODO: documentar.
  */
-@RunWith(PowerMockRunner.class)
-//TODO: make this work. balnce service is null ¿?
-// @PrepareForTest({ClientDDBB.class, IBalanceService.class})
-@PrepareForTest(ClientDDBB.class)
-// @PrepareForTest({ClientDDBB.class, WithdrawalService.class})
+@RunWith(MockitoJUnitRunner.class)
 public class WithdrawalServiceTest {
 
     @Mock
-    private ClientDDBB clientDDBB;
+    private ClientContainer clientContainer;
+
+    @Mock
+    private CashContainer cashContainer;
 
     @Mock
     private IBalanceService balanceService;
 
+    @InjectMocks
     private WithdrawalService withdrawalService;
 
     /**
      * Prepare tests.
      */
-    @Before
-    public void setUp() {
-        withdrawalService = new WithdrawalService();
-    }
 
     /**
      * TODO: documentar.
@@ -57,17 +54,12 @@ public class WithdrawalServiceTest {
         Client client = new Client(accountNumber, pin, 800.0, 200.0);
         Double actualBalance = 500.0;
         Double expectedMaximumWithdrawal = client.getOverdraft() + actualBalance;
-        boolean accountExists = true;
+        TreeMap<Integer, Integer> expectedWithdrawalNotes = new TreeMap<Integer, Integer>(Collections.reverseOrder());
+        expectedWithdrawalNotes.put(50, 20);
 
-        mockStatic(ClientDDBB.class);
+        Mockito.when(balanceService.checkBalance(pin, accountNumber)).thenReturn(actualBalance);
 
-        expect(balanceService.checkBalance(pin, accountNumber)).andReturn(actualBalance);
-        expect(clientDDBB.accountExists(accountNumber)).andReturn(accountExists);
-        expect(clientDDBB.getClient(accountNumber)).andReturn(client);
-
-        replayAll();
         Double maximumWithdrawal = withdrawalService.getMaximumWithdrawal(pin, Long.valueOf(accountNumber));
-        verifyAll();
         assertEquals(expectedMaximumWithdrawal, maximumWithdrawal, 0.0);
     }
 
@@ -80,17 +72,10 @@ public class WithdrawalServiceTest {
      */
     // @Test(expected = InvalidAccountException.class)
     // public void getMaxWithdrawalInvalidAccountTest() throws InvalidPinException, InvalidAccountException {
-    // Long accountNumber = Long.valueOf(123456780);
-    // int pin = 1234;
-    // mockStatic(ClientDDBB.class);
-    //
-    // Mockito.when(balanceService.checkBalance(pin, accountNumber)).thenReturn(500.0);
-    //
-    // expect(ClientDDBB.accountExists(accountNumber)).andReturn(false);
-    // expect(ClientDDBB.getClient(accountNumber)).andReturn(null);
-    //
-    // replayAll();
-    // withdrawalService.getMaximumWithdrawal(pin, Long.valueOf(11111111));
+
+    // Mockito.when(clientContainer.accountExists(accountNumber)).thenReturn(accountExists);
+    // Mockito.when(clientContainer.getClient(accountNumber)).thenReturn(client);
+    // Mockito.when(cashContainer.calculateWithdrawal(2000)).thenReturn(expectedWithdrawalNotes);
     //
     // }
 }

@@ -1,2 +1,4 @@
 target
 jnj-atm-service/target/classes
+/jnj-atm-service/target/classes/META-INF
+/jnj-atm-service/target/classes/META-INF/maven/com.irealmar

@@ -1,4 +1,4 @@
-package com.irealmar.dbaccess;
+package com.irealmar.repository;
 
 import java.util.Date;
 import java.util.Hashtable;

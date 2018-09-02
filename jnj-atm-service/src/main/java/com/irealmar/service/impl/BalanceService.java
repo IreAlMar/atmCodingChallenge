@@ -2,9 +2,9 @@ package com.irealmar.service.impl;
 
 import org.springframework.stereotype.Service;
 
-import com.irealmar.dbaccess.Client;
-import com.irealmar.dbaccess.ClientDDBB;
-import com.irealmar.dbaccess.TransactionDDBB;
+import com.irealmar.repository.Client;
+import com.irealmar.repository.ClientContainer;
+import com.irealmar.repository.TransactionDDBB;
 import com.irealmar.service.IBalanceService;
 import com.irealmar.service.InvalidAccountException;
 import com.irealmar.service.InvalidPinException;
@@ -16,7 +16,7 @@ import com.irealmar.service.InvalidPinException;
 public class BalanceService implements IBalanceService {
 
     private TransactionDDBB transactionDDBB = TransactionDDBB.getTransactionDDBBInstance();
-    private ClientDDBB clientDDBB = ClientDDBB.getClientDDBBInstance();
+    private ClientContainer clientDDBB = new ClientContainer();
 
     @Override
     public Double checkBalance(int pin, Long accountNumber) throws InvalidPinException, InvalidAccountException {
