@@ -12,8 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import com.irealmar.service.IWithdrawalService;
-import com.irealmar.service.InvalidAccountException;
-import com.irealmar.service.InvalidPinException;
+import com.irealmar.service.impl.InvalidAccountException;
+import com.irealmar.service.impl.InvalidPinException;
 
 /**
  * Test class for .WithdrawalController.

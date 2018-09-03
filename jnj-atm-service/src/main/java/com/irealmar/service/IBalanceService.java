@@ -1,8 +1,8 @@
 package com.irealmar.service;
 
-/**
- * TODO: documentar.
- */
+import com.irealmar.service.impl.InvalidAccountException;
+import com.irealmar.service.impl.InvalidPinException;
+
 public interface IBalanceService {
 
     /**

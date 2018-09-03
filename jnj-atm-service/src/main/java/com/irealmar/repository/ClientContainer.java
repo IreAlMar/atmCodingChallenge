@@ -7,11 +7,8 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-/**
- * TODO: documentar.
- */
-@Component
-@Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
+//@Component
+//@Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class ClientContainer {
 
     // TODO final ¿?
@@ -29,22 +26,10 @@ public class ClientContainer {
         clients.put(Long.valueOf(987654321), new Client(Long.valueOf(987654321), 4321, 1230, 150));
     }
 
-    /**
-     * TODO: documentar.
-     * @param accountNumber
-     *        the account number
-     * @return if the account number exists
-     */
     public boolean accountExists(Long accountNumber) {
         return clients.containsKey(accountNumber);
     }
 
-    /**
-     * TODO: documentar.
-     * @param accountNumber
-     *        the account number
-     * @return the client data
-     */
     public Client getClient(Long accountNumber) {
         if (!accountExists(accountNumber)) {
             return null;

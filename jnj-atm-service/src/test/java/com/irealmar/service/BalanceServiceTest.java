@@ -8,6 +8,8 @@ import org.mockito.InjectMocks;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import com.irealmar.service.impl.BalanceService;
+import com.irealmar.service.impl.InvalidAccountException;
+import com.irealmar.service.impl.InvalidPinException;
 
 /**
  * Test class for BalanceService.

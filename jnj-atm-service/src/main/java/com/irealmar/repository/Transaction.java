@@ -2,9 +2,6 @@ package com.irealmar.repository;
 
 import java.util.Date;
 
-/**
- * TODO: documentar.
- */
 public class Transaction implements Comparable<Transaction> {
     private Date date;
     private Double resultBalance;
@@ -32,20 +29,20 @@ public class Transaction implements Comparable<Transaction> {
         return this.date.compareTo(transaction.getDate());
     }
 
-    /**
-     * TODO: documentar.
-     * @return the date
-     */
     public Date getDate() {
         return date;
     }
 
-    /**
-     * TODO: documentar.
-     * @return the resultBalance
-     */
     public Double getResultBalance() {
         return resultBalance;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setResultBalance(Double resultBalance) {
+        this.resultBalance = resultBalance;
     }
 
 }

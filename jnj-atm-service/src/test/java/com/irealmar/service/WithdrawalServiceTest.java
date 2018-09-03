@@ -16,11 +16,11 @@ import org.mockito.Mock;
 import com.irealmar.repository.CashContainer;
 import com.irealmar.repository.Client;
 import com.irealmar.repository.ClientContainer;
+import com.irealmar.repository.TransactionContainer;
+import com.irealmar.service.impl.InvalidAccountException;
+import com.irealmar.service.impl.InvalidPinException;
 import com.irealmar.service.impl.WithdrawalService;
 
-/**
- * TODO: documentar.
- */
 @RunWith(MockitoJUnitRunner.class)
 public class WithdrawalServiceTest {
 
@@ -31,24 +31,16 @@ public class WithdrawalServiceTest {
     private CashContainer cashContainer;
 
     @Mock
+    private TransactionContainer transactionContainer;
+
+    @Mock
     private IBalanceService balanceService;
 
     @InjectMocks
     private WithdrawalService withdrawalService;
 
-    /**
-     * Prepare tests.
-     */
-
-    /**
-     * TODO: documentar.
-     * @throws InvalidAccountException
-     *         Exception
-     * @throws InvalidPinException
-     *         Exception
-     */
     @Test
-    public final void getMaximumWithdrawalSuceedTest() throws InvalidPinException, InvalidAccountException {
+    public final void itShouldCheckMaxWithdrawalIfAny() throws InvalidPinException, InvalidAccountException {
         Long accountNumber = Long.valueOf(123456789);
         int pin = 1234;
         Client client = new Client(accountNumber, pin, 800.0, 200.0);
@@ -62,21 +54,21 @@ public class WithdrawalServiceTest {
         Double maximumWithdrawal = withdrawalService.getMaximumWithdrawal(pin, Long.valueOf(accountNumber));
         assertEquals(expectedMaximumWithdrawal, maximumWithdrawal, 0.0);
     }
-    // TODO: more test cases.
 
-    /**
-     * TODO: documentar.
-     * @throws InvalidAccountException
-     *         Exception
-     * @throws InvalidPinException
-     *         Exception
-     */
-    // @Test(expected = InvalidAccountException.class)
-    // public void getMaxWithdrawalInvalidAccountTest() throws InvalidPinException, InvalidAccountException {
+//    @Test
+//    public final void itShouldDetailTheNotesAndRemainingBalance() throws InvalidPinException, InvalidAccountException {
+//        Long accountNumber = Long.valueOf(123456789);
+//        int pin = 1234;
+//        Client client = new Client(accountNumber, pin, 800.0, 200.0);
+//        Double actualBalance = 500.0;
+//        Double expectedMaximumWithdrawal = client.getOverdraft() + actualBalance;
+//        TreeMap<Integer, Integer> expectedWithdrawalNotes = new TreeMap<Integer, Integer>(Collections.reverseOrder());
+//        expectedWithdrawalNotes.put(50, 20);
+//
+//        Mockito.when(balanceService.checkBalance(pin, accountNumber)).thenReturn(actualBalance);
+//
+//        Double maximumWithdrawal = withdrawalService.getMaximumWithdrawal(pin, Long.valueOf(accountNumber));
+//        assertEquals(expectedMaximumWithdrawal, maximumWithdrawal, 0.0);
+//    }
 
-    // Mockito.when(clientContainer.accountExists(accountNumber)).thenReturn(accountExists);
-    // Mockito.when(clientContainer.getClient(accountNumber)).thenReturn(client);
-    // Mockito.when(cashContainer.calculateWithdrawal(2000)).thenReturn(expectedWithdrawalNotes);
-    //
-    // }
 }

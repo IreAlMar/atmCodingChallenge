@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.irealmar.service.IBalanceService;
-import com.irealmar.service.InvalidAccountException;
-import com.irealmar.service.InvalidPinException;
+import com.irealmar.service.impl.InvalidAccountException;
+import com.irealmar.service.impl.InvalidPinException;
 
 /**
  * TODO: documentar.

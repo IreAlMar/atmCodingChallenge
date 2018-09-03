@@ -1,25 +1,31 @@
 package com.irealmar.controller;
 
-import java.util.TreeMap;
+import com.irealmar.service.WithdrawalResult;
 
-/**
- * TODO: documentar.
- */
 public class DispenseResponse {
 
-    TreeMap<Integer, Integer> withdrawalNotes;
+    private WithdrawalResult withdrawalResult;
     private String resultCode;
 
-    /**
-     * TODO: documentar.
-     * @param withdrawalNotes
-     *        the withdrawalNotes
-     * @param resultCode
-     *        code result for the operation requested
-     */
-    public DispenseResponse(TreeMap<Integer, Integer> withdrawalNotes, String resultCode) {
+    public DispenseResponse(WithdrawalResult withdrawalResult, String resultCode) {
         super();
-        this.withdrawalNotes = withdrawalNotes;
+        this.withdrawalResult = withdrawalResult;
+        this.resultCode = resultCode;
+    }
+
+    public WithdrawalResult getWithdrawalResult() {
+        return withdrawalResult;
+    }
+
+    public void setWithdrawalResult(WithdrawalResult withdrawalResult) {
+        this.withdrawalResult = withdrawalResult;
+    }
+
+    public String getResultCode() {
+        return resultCode;
+    }
+
+    public void setResultCode(String resultCode) {
         this.resultCode = resultCode;
     }
 

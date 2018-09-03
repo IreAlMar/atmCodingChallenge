@@ -1,12 +1,8 @@
 package com.irealmar.controller;
 
-/**
- * Balance result sent to the client.
- */
 public class BalanceResponse {
     private double balance;
 
-    // TODO: enmum with possible errors¿?
     // TOTHINK: localization? better to return just error codes or meaningful messages. They say meaningful messages...
     private String resultCode;
 

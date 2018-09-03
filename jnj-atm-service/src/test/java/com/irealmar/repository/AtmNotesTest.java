@@ -31,7 +31,7 @@ public class AtmNotesTest {
      * TODO: pensar nombres de test.
      */
     @Test
-    public void itShouldNotDisenseMoreMoneyThanItHolds() {
+    public void itShouldNotDispenseMoreMoneyThanItHolds() {
         TreeMap<Integer, Integer> actualWithdrawal = cash.calculateWithdrawal(3000);
         assertTrue(actualWithdrawal.isEmpty());
     }

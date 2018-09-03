@@ -1,7 +1,5 @@
 package com.irealmar.controller;
 
-import java.util.TreeMap;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
@@ -11,8 +9,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.irealmar.service.IWithdrawalService;
-import com.irealmar.service.InvalidAccountException;
-import com.irealmar.service.InvalidPinException;
+import com.irealmar.service.WithdrawalResult;
+import com.irealmar.service.impl.InsuficientCashException;
+import com.irealmar.service.impl.InsuficientFundsException;
+import com.irealmar.service.impl.InvalidAccountException;
+import com.irealmar.service.impl.InvalidPinException;
+import com.irealmar.service.impl.UnavailableAmountException;
 
 /**
  * TODO: control invalid request params.
@@ -68,12 +70,18 @@ public class WithdrawalController {
         DispenseResponse dispenseResponse = null;
 
         try {
-            dispenseResponse = new DispenseResponse(withdrawalService.dispenseFunds(pin, accountNumber), "OK");
+            dispenseResponse = new DispenseResponse(withdrawalService.dispenseFunds(pin, accountNumber, amount), "OK");
         } catch (InvalidPinException ex) {
             // TODO: use exception handler
-            dispenseResponse = new DispenseResponse(new TreeMap<Integer, Integer>(), "Invalid pin");
+            dispenseResponse = new DispenseResponse(new WithdrawalResult(), "Invalid pin");
         } catch (InvalidAccountException ex) {
-            dispenseResponse = new DispenseResponse(new TreeMap<Integer, Integer>(), "Invalid account");
+            dispenseResponse = new DispenseResponse(new WithdrawalResult(), "Invalid account");
+        } catch (InsuficientFundsException ex) {
+            dispenseResponse = new DispenseResponse(new WithdrawalResult(), "Insuficient funds in account");
+        } catch (InsuficientCashException ex) {
+            dispenseResponse = new DispenseResponse(new WithdrawalResult(), "Insuficient cash in ATM");
+        } catch (UnavailableAmountException ex) {
+            dispenseResponse = new DispenseResponse(new WithdrawalResult(), "Unavailable amount in ATM");
         }
 
         return new ResponseEntity<>(dispenseResponse, HttpStatus.OK);

@@ -1,34 +1,15 @@
 package com.irealmar.service;
 
-import java.util.TreeMap;
+import com.irealmar.service.impl.InsuficientCashException;
+import com.irealmar.service.impl.InsuficientFundsException;
+import com.irealmar.service.impl.InvalidAccountException;
+import com.irealmar.service.impl.InvalidPinException;
+import com.irealmar.service.impl.UnavailableAmountException;
 
-/**
- * TODO: documentar.
- */
 public interface IWithdrawalService {
-    /**
-     * Request maximum possible withdrawal.
-     * @param pin
-     *        the pin number
-     * @param accountNumber
-     *        the account number corresponding to the pin number
-     * @return maximum withdrawal amount
-     * @throws InvalidPinException
-     * @throws InvalidAccountException
-     */
     Double getMaximumWithdrawal(int pin, Long accountNumber) throws InvalidPinException, InvalidAccountException;
 
-    /**
-     * Dispense funds.
-     * @param pin
-     *        the pin number
-     * @param accountNumber
-     *        the account number corresponding to the pin number
-     * @return maximum withdrawal amount
-     * @throws InvalidPinException
-     * @throws InvalidAccountException
-     */
-    TreeMap<Integer, Integer> dispenseFunds(int pin, Long accountNumber) throws InvalidPinException,
-        InvalidAccountException;
+    WithdrawalResult dispenseFunds(int pin, Long accountNumber, int amount) throws InvalidPinException,
+        InvalidAccountException, InsuficientFundsException, InsuficientCashException, UnavailableAmountException;
 
 }

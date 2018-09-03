@@ -1,8 +1,5 @@
 package com.irealmar.repository;
 
-/**
- * TODO: documentar.
- */
 public class Client {
     private Long accountNumber;
     private int pin;

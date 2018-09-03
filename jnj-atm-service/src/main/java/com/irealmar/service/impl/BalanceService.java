@@ -1,13 +1,16 @@
 package com.irealmar.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Service;
 
+import com.irealmar.Application;
+import com.irealmar.repository.CashContainer;
 import com.irealmar.repository.Client;
 import com.irealmar.repository.ClientContainer;
-import com.irealmar.repository.TransactionDDBB;
+import com.irealmar.repository.TransactionContainer;
 import com.irealmar.service.IBalanceService;
-import com.irealmar.service.InvalidAccountException;
-import com.irealmar.service.InvalidPinException;
 
 /**
  * TODO: documentar.
@@ -15,21 +18,30 @@ import com.irealmar.service.InvalidPinException;
 @Service
 public class BalanceService implements IBalanceService {
 
-    private TransactionDDBB transactionDDBB = TransactionDDBB.getTransactionDDBBInstance();
-    private ClientContainer clientDDBB = new ClientContainer();
+    @Autowired
+    private ApplicationContext context;
+    private TransactionContainer transactionContainer;
+    private ClientContainer clientContainer;
 
     @Override
     public Double checkBalance(int pin, Long accountNumber) throws InvalidPinException, InvalidAccountException {
-        if (!clientDDBB.accountExists(accountNumber)) {
+        transactionContainer = (TransactionContainer)context.getBean("transactionContainer");
+        clientContainer = (ClientContainer)context.getBean("clientContainer");
+        // AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
+        // clientContainer = context.getBean(ClientContainer.class);
+        // transactionContainer = context.getBean(TransactionContainer.class);
+        // context.close();
+
+        if (!clientContainer.accountExists(accountNumber)) {
             throw new InvalidAccountException();
 
         } else {
-            Client client = clientDDBB.getClient(accountNumber);
+            Client client = clientContainer.getClient(accountNumber);
             if (client != null && client.getPin() != pin) {
                 throw new InvalidPinException();
 
             } else {
-                return transactionDDBB.getLastResultBalance(accountNumber);
+                return transactionContainer.getLastResultBalance(accountNumber);
             }
         }
     }

@@ -1,17 +1,15 @@
 package com.irealmar.repository;
 
 import java.util.Collections;
+import java.util.Map;
 import java.util.TreeMap;
 
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
+//import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+//import org.springframework.context.annotation.Scope;
+//import org.springframework.stereotype.Component;
 
-/**
- * TODO: documentar.
- */
-@Component
-@Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
+//@Component
+//@Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class CashContainer {
 
     // Map <NoteType, amount of available notes>
@@ -53,6 +51,15 @@ public class CashContainer {
 
         return result;
 
+    }
+
+    public void dispenseNotes(TreeMap<Integer, Integer> dispensedNotes) {
+        for (Map.Entry<Integer, Integer> entry : dispensedNotes.entrySet()) {
+            Integer key = entry.getKey();
+            Integer value = entry.getValue();
+            // dispensedNotes.compute(key, notes -> notes.put(key, notes.getKey() - dispensedNotes.getKey()));
+            notes.put(key, notes.get(key) - value);
+        }
     }
 
     private TreeMap<Integer, Integer> calculateWitdrawalNotes(int withdrawalAmount, TreeMap<Integer, Integer> remain,
