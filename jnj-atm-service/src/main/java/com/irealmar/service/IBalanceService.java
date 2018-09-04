@@ -1,7 +1,7 @@
 package com.irealmar.service;
 
-import com.irealmar.service.impl.InvalidAccountException;
-import com.irealmar.service.impl.InvalidPinException;
+import com.irealmar.exception.InvalidAccountException;
+import com.irealmar.exception.InvalidPinException;
 
 /**
  * Interface for the balance service.

@@ -8,9 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.irealmar.exception.InvalidAccountException;
+import com.irealmar.exception.InvalidPinException;
+import com.irealmar.response.BalanceResponse;
 import com.irealmar.service.IBalanceService;
-import com.irealmar.service.impl.InvalidAccountException;
-import com.irealmar.service.impl.InvalidPinException;
 
 /**
  * Balance controller.
@@ -23,7 +24,7 @@ public class BalanceController {
     private IBalanceService balanceService;
 
     // TODO: Add security: sanitize entry points.
-    // TODO: ask if the app should return the balance and the maximum withdrawal in the same response
+    // TODO: Confirm if the app should return the balance and the maximum withdrawal in the same response
     /**
      * Returns the balance given an account number in case that the pin and the account number are valid.
      * @param pin

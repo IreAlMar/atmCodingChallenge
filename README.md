@@ -35,10 +35,11 @@ For example, for testing Empty ATM, the application shoud be fresh.
 ## TODO
 
 * Add DDBB connection to it to build a proper persistence layer as a third party will provide data
+* In the repository package should there is some logic that should be moved to the services
 * Add security to sanitize entries
 * Add an exception handler to manage exceptions
 * Add security so the pin and account number are not sent raw as parameters. Secure them in anyway they can still are included as parameters in each request as the briefing says.
-* Use AOP for repeated code
+* Use AOP for repeated code and validations
 * Add logs system
 * Find a way to use the same Mocks for various test classes (inheritance)
 

@@ -11,9 +11,10 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import com.irealmar.exception.InvalidAccountException;
+import com.irealmar.exception.InvalidPinException;
+import com.irealmar.response.MaxWithdrawalResponse;
 import com.irealmar.service.IWithdrawalService;
-import com.irealmar.service.impl.InvalidAccountException;
-import com.irealmar.service.impl.InvalidPinException;
 
 /**
  * Test class for .WithdrawalController.

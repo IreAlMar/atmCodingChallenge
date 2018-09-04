@@ -1,10 +1,11 @@
 package com.irealmar.service;
 
-import com.irealmar.service.impl.InsuficientCashException;
-import com.irealmar.service.impl.InsuficientFundsException;
-import com.irealmar.service.impl.InvalidAccountException;
-import com.irealmar.service.impl.InvalidPinException;
-import com.irealmar.service.impl.UnavailableAmountException;
+import com.irealmar.exception.InsuficientCashException;
+import com.irealmar.exception.InsuficientFundsException;
+import com.irealmar.exception.InvalidAccountException;
+import com.irealmar.exception.InvalidPinException;
+import com.irealmar.exception.UnavailableAmountException;
+import com.irealmar.service.impl.WithdrawalResult;
 
 /**
  * Service for withdrawal operations.

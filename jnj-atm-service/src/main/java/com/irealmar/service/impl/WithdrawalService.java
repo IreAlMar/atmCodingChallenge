@@ -6,13 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
+import com.irealmar.exception.InsuficientCashException;
+import com.irealmar.exception.InsuficientFundsException;
+import com.irealmar.exception.InvalidAccountException;
+import com.irealmar.exception.InvalidPinException;
+import com.irealmar.exception.UnavailableAmountException;
 import com.irealmar.repository.CashContainer;
 import com.irealmar.repository.Client;
 import com.irealmar.repository.ClientContainer;
 import com.irealmar.repository.TransactionContainer;
 import com.irealmar.service.IBalanceService;
 import com.irealmar.service.IWithdrawalService;
-import com.irealmar.service.WithdrawalResult;
 
 /**
  * Service for withdrawal operations.

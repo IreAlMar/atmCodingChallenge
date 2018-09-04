@@ -10,9 +10,10 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import com.irealmar.exception.InvalidAccountException;
+import com.irealmar.exception.InvalidPinException;
+import com.irealmar.response.BalanceResponse;
 import com.irealmar.service.IBalanceService;
-import com.irealmar.service.impl.InvalidAccountException;
-import com.irealmar.service.impl.InvalidPinException;
 
 /**
  * Test class for BalanceController.

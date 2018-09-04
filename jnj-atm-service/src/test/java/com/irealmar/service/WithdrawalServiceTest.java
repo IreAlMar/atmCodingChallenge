@@ -15,15 +15,16 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.context.ApplicationContext;
 import org.mockito.Mock;
 
+import com.irealmar.exception.InsuficientCashException;
+import com.irealmar.exception.InsuficientFundsException;
+import com.irealmar.exception.InvalidAccountException;
+import com.irealmar.exception.InvalidPinException;
+import com.irealmar.exception.UnavailableAmountException;
 import com.irealmar.repository.CashContainer;
 import com.irealmar.repository.Client;
 import com.irealmar.repository.ClientContainer;
 import com.irealmar.repository.TransactionContainer;
-import com.irealmar.service.impl.InsuficientCashException;
-import com.irealmar.service.impl.InsuficientFundsException;
-import com.irealmar.service.impl.InvalidAccountException;
-import com.irealmar.service.impl.InvalidPinException;
-import com.irealmar.service.impl.UnavailableAmountException;
+import com.irealmar.service.impl.WithdrawalResult;
 import com.irealmar.service.impl.WithdrawalService;
 
 /**
