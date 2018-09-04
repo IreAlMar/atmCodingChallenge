@@ -1,5 +1,8 @@
 package com.irealmar.controller;
 
+/**
+ * Response for maximum withdrawal operations.
+ */
 public class MaxWithdrawalResponse {
     private double maxWithdrawal;
     private String resultCode;

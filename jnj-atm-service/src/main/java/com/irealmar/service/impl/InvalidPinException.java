@@ -1,7 +1,7 @@
 package com.irealmar.service.impl;
 
 /**
- * Exception thrown when the pin number doesn't match the account number.
+ * Exception thrown when the pin number does not match the account number.
  */
 public class InvalidPinException extends Exception {
 

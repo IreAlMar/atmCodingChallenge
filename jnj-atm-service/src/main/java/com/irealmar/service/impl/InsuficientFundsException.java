@@ -1,7 +1,7 @@
 package com.irealmar.service.impl;
 
 /**
- * Exception thrown when the balance and the overdraft are insuficient to perform a withdrawal.
+ * Exception thrown when the balance and the overdraft are insufficient to perform a withdrawal.
  */
 public class InsuficientFundsException extends Exception {
 

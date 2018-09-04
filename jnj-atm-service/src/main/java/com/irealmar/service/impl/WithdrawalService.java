@@ -4,10 +4,8 @@ import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Service;
 
-import com.irealmar.Application;
 import com.irealmar.repository.CashContainer;
 import com.irealmar.repository.Client;
 import com.irealmar.repository.ClientContainer;
@@ -16,6 +14,9 @@ import com.irealmar.service.IBalanceService;
 import com.irealmar.service.IWithdrawalService;
 import com.irealmar.service.WithdrawalResult;
 
+/**
+ * Service for withdrawal operations.
+ */
 @Service
 public class WithdrawalService implements IWithdrawalService {
 
@@ -30,16 +31,16 @@ public class WithdrawalService implements IWithdrawalService {
     private TransactionContainer transactionContainer;
 
     /**
-     * Request maximum possible withdrawal counting with the ATM available notes.
+     * Calculate maximum withdrawal possible counting with the ATM available notes.
      * @param pin
      *        the pin number
      * @param accountNumber
      *        the account number corresponding to the pin number
      * @return maximum withdrawal amount
      * @throws InvalidPinException
-     *         Exception
+     *         Exception thrown when the pin is invalid
      * @throws InvalidAccountException
-     *         Exception
+     *         Exception thrown when the account is invalid
      */
     @Override
     public Double getMaximumWithdrawal(int pin, Long accountNumber) throws InvalidPinException,
@@ -55,7 +56,7 @@ public class WithdrawalService implements IWithdrawalService {
         Double clientBalance = balanceService.checkBalance(pin, accountNumber);
         Double result = 0.0;
 
-        // TODO: change to avoid duplicated code from BalanceService.java, use AOP
+        // TODO: change to avoid duplicated code from BalanceService.java, use AOP for check pin and account
         if (!clientContainer.accountExists(accountNumber)) {
             throw new InvalidAccountException();
 
@@ -76,12 +77,14 @@ public class WithdrawalService implements IWithdrawalService {
     }
 
     /**
-     * Request a withdrawal.
+     * Perform a withdrawal. This operation involves verification of the pin and account, verification of the available
+     * client' s funds and verify that there are enough notes in the ATM. The service will only dispense the exact
+     * amounts requested, if the notes in the ATM do not fit the amount requested the withdrawal will no be performed.
      * @param pin
      *        the pin number
      * @param accountNumber
      *        the account number corresponding to the pin number
-     * @return the details of the notes that would be dispensed along with remaining balance
+     * @return the details of the notes that would be dispensed along with the remaining balance
      */
     @Override
     public WithdrawalResult dispenseFunds(int pin, Long accountNumber, int amount)
@@ -125,7 +128,6 @@ public class WithdrawalService implements IWithdrawalService {
                         throw new UnavailableAmountException();
                     } else {
                         transactionContainer.addTransaction(accountNumber, new Double(-amount));
-                        // TODO: remove notes from cash
                         cashContainer.dispenseNotes(withdrawalNotes);
                         return new WithdrawalResult(withdrawalNotes, balanceService.checkBalance(pin, accountNumber));
                     }

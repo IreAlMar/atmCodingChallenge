@@ -2,6 +2,10 @@ package com.irealmar.repository;
 
 import java.util.Date;
 
+
+/**
+ * Transaction is the result of an operation on a client's account.
+ */
 public class Transaction implements Comparable<Transaction> {
     private Date date;
     private Double resultBalance;
@@ -28,21 +32,37 @@ public class Transaction implements Comparable<Transaction> {
     public int compareTo(Transaction transaction) {
         return this.date.compareTo(transaction.getDate());
     }
-
+    /**
+     * Getter.
+     * @return the date of creation of the transaction
+     */
     public Date getDate() {
         return date;
     }
-
+    /**
+     * Getter.
+     * @return the resulting balance after the operation is performed
+     */
     public Double getResultBalance() {
         return resultBalance;
     }
 
+    /**
+     * Setter.
+     * @param date the date to set
+     */
     public void setDate(Date date) {
         this.date = date;
     }
 
+    /**
+     * Setter.
+     * @param resultBalance the resultBalance to set
+     */
     public void setResultBalance(Double resultBalance) {
         this.resultBalance = resultBalance;
     }
+
+
 
 }

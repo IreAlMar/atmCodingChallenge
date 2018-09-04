@@ -2,18 +2,15 @@ package com.irealmar.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Service;
 
-import com.irealmar.Application;
-import com.irealmar.repository.CashContainer;
 import com.irealmar.repository.Client;
 import com.irealmar.repository.ClientContainer;
 import com.irealmar.repository.TransactionContainer;
 import com.irealmar.service.IBalanceService;
 
 /**
- * TODO: documentar.
+ * Service for balance operations.
  */
 @Service
 public class BalanceService implements IBalanceService {

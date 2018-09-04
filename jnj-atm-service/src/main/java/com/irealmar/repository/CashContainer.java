@@ -10,6 +10,9 @@ import java.util.TreeMap;
 
 //@Component
 //@Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
+/**
+ * Cash store.
+ */
 public class CashContainer {
 
     // Map <NoteType, amount of available notes>
@@ -53,6 +56,10 @@ public class CashContainer {
 
     }
 
+    /**
+     * Update the ATM cash when a group of notes are dispensed.
+     * @param dispensedNotes the dispensed notes
+     */
     public void dispenseNotes(TreeMap<Integer, Integer> dispensedNotes) {
         for (Map.Entry<Integer, Integer> entry : dispensedNotes.entrySet()) {
             Integer key = entry.getKey();

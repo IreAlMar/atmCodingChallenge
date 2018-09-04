@@ -1,5 +1,8 @@
 package com.irealmar.controller;
 
+/**
+ * Response for balance check operations.
+ */
 public class BalanceResponse {
     private double balance;
 

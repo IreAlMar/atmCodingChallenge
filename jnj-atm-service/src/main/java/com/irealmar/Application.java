@@ -10,7 +10,7 @@ import com.irealmar.repository.ClientContainer;
 import com.irealmar.repository.TransactionContainer;
 
 /**
- * TODO: documentar.
+ * Application.
  */
 @SpringBootApplication
 @ComponentScan({
@@ -22,7 +22,7 @@ import com.irealmar.repository.TransactionContainer;
 public class Application {
 
     /**
-     * TODO: documentar.
+     * main.
      * @param args
      *        args
      */
@@ -30,16 +30,28 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
+    /**
+     * Singleton instance retriever.
+     * @return the cash container
+     */
     @Bean
     public CashContainer cashContainer() {
         return new CashContainer();
     }
 
+    /**
+     * Singleton instance retriever.
+     * @return the transaction container
+     */
     @Bean
     public TransactionContainer transactionContainer() {
         return new TransactionContainer();
     }
 
+    /**
+     * Singleton instance retriever.
+     * @return the client container
+     */
     @Bean
     public ClientContainer clientContainer() {
         return new ClientContainer();

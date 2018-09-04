@@ -1,7 +1,7 @@
 package com.irealmar.service.impl;
 
 /**
- * TODO: documentar.
+ * Exception thrown when the amount can not be dispense with the ATM notes.
  */
 public class UnavailableAmountException extends Exception {
 

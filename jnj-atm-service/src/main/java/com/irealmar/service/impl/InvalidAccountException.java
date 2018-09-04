@@ -1,7 +1,7 @@
 package com.irealmar.service.impl;
 
 /**
- * Exception thrown when the account number doesn't exist.
+ * Exception thrown when the account number does not exist.
  */
 public class InvalidAccountException extends Exception {
 

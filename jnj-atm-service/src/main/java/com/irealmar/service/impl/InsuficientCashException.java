@@ -1,7 +1,7 @@
 package com.irealmar.service.impl;
 
 /**
- * Exception thrown when the cash in the ATM is no enougth to dispense a requested amount.
+ * Exception thrown when the cash in the ATM is no enough to dispense a requested amount.
  */
 public class InsuficientCashException extends Exception {
 

@@ -1,5 +1,8 @@
 package com.irealmar.repository;
 
+/**
+ * A client is identified by the account number which is associated with a pin number and an overdraft.
+ */
 public class Client {
     private Long accountNumber;
     private int pin;
@@ -51,7 +54,7 @@ public class Client {
 
     /**
      * Getter.
-     * @return the accountnumber
+     * @return the account number
      */
     public Long getAccountNumber() {
         return this.accountNumber;

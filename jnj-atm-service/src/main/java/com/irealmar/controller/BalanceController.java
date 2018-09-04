@@ -13,7 +13,7 @@ import com.irealmar.service.impl.InvalidAccountException;
 import com.irealmar.service.impl.InvalidPinException;
 
 /**
- * TODO: documentar.
+ * Balance controller.
  */
 @RestController
 @EnableAutoConfiguration
@@ -22,6 +22,8 @@ public class BalanceController {
     @Autowired
     private IBalanceService balanceService;
 
+    // TODO: Add security: sanitize entry points.
+    // TODO: return the balance along with the maximum withdrawal
     /**
      * TODO: documentar.
      * @param pin
@@ -39,10 +41,8 @@ public class BalanceController {
         try {
             balanceResponse = new BalanceResponse(balanceService.checkBalance(pin, accountNumber), "OK");
         } catch (InvalidPinException ex) {
-            // TOTHINK: which value return when invalid pin
             balanceResponse = new BalanceResponse(0, "Invalid pin");
         } catch (InvalidAccountException ex) {
-            // TOTHINK: which value return when invalid account
             balanceResponse = new BalanceResponse(0, "Invalid account");
         }
 
