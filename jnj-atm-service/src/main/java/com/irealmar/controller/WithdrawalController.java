@@ -27,7 +27,7 @@ public class WithdrawalController {
     IWithdrawalService withdrawalService;
 
     /**
-     * TODO: documentar.
+     * Entry point for detting the maximum withdrawal.
      * @param pin
      *        pin number
      * @param accountNumber
@@ -54,7 +54,7 @@ public class WithdrawalController {
     }
 
     /**
-     * TODO: documentar.
+     * Perfrom withdrawal entry point.
      * @param pin
      *        pin number
      * @param accountNumber

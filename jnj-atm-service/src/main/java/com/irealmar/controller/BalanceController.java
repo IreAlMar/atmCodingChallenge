@@ -23,9 +23,9 @@ public class BalanceController {
     private IBalanceService balanceService;
 
     // TODO: Add security: sanitize entry points.
-    // TODO: return the balance along with the maximum withdrawal
+    // TODO: ask if the app should return the balance and the maximum withdrawal in the same response
     /**
-     * TODO: documentar.
+     * Returns the balance given an account number in case that the pin and the account number are valid.
      * @param pin
      *        pin number
      * @param accountNumber

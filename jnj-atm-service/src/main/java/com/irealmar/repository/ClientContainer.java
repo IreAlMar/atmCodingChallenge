@@ -6,8 +6,6 @@ import java.util.Map;
 /**
  * Clients are store.
  */
-// @Component
-// @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
 public class ClientContainer {
 
     // TODO final ¿?

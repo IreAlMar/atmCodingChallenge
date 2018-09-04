@@ -4,12 +4,6 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.TreeMap;
 
-//import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-//import org.springframework.context.annotation.Scope;
-//import org.springframework.stereotype.Component;
-
-//@Component
-//@Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
 /**
  * Cash store.
  */
@@ -30,7 +24,7 @@ public class CashContainer {
     }
 
     /**
-     * TODO: documentar.
+     * Get total cash in the ATM.
      * @return Total Cash
      */
     public Integer getTotalCash() {
@@ -38,7 +32,8 @@ public class CashContainer {
     }
 
     /**
-     * TODO: documentar.
+     * Calculates the notes available for a withdrawal amount. It uses the recursive function
+     * {@link #calculateWitdrawalNotes}
      * @param withdrawalAmount
      *        amount requested
      * @return list of notes
@@ -57,18 +52,13 @@ public class CashContainer {
     }
 
     /**
-     * Update the ATM cash when a group of notes are dispensed.
-     * @param dispensedNotes the dispensed notes
+     * Auxiliary function for {@link #calculateWitdrawal}. The algorithm consists of an iteration over a copy of the
+     * existing notes in the ATM ordered from greater to smaller amount and using the tail of the map when the greater
+     * note value is useless.
+     * @param withdrawalAmount
+     *        amount requested
+     * @return list of notes
      */
-    public void dispenseNotes(TreeMap<Integer, Integer> dispensedNotes) {
-        for (Map.Entry<Integer, Integer> entry : dispensedNotes.entrySet()) {
-            Integer key = entry.getKey();
-            Integer value = entry.getValue();
-            // dispensedNotes.compute(key, notes -> notes.put(key, notes.getKey() - dispensedNotes.getKey()));
-            notes.put(key, notes.get(key) - value);
-        }
-    }
-
     private TreeMap<Integer, Integer> calculateWitdrawalNotes(int withdrawalAmount, TreeMap<Integer, Integer> remain,
         TreeMap<Integer, Integer> result) {
 
@@ -93,6 +83,20 @@ public class CashContainer {
             return calculateWitdrawalNotes(withdrawalAmount, remain, result);
         }
 
+    }
+
+    /**
+     * Update the ATM cash when a group of notes are dispensed.
+     * @param dispensedNotes
+     *        the dispensed notes
+     */
+    public void dispenseNotes(TreeMap<Integer, Integer> dispensedNotes) {
+        for (Map.Entry<Integer, Integer> entry : dispensedNotes.entrySet()) {
+            Integer key = entry.getKey();
+            Integer value = entry.getValue();
+            // dispensedNotes.compute(key, notes -> notes.put(key, notes.getKey() - dispensedNotes.getKey()));
+            notes.put(key, notes.get(key) - value);
+        }
     }
 
 }

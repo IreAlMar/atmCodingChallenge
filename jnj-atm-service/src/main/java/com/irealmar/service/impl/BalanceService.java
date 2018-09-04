@@ -24,10 +24,6 @@ public class BalanceService implements IBalanceService {
     public Double checkBalance(int pin, Long accountNumber) throws InvalidPinException, InvalidAccountException {
         transactionContainer = (TransactionContainer)context.getBean("transactionContainer");
         clientContainer = (ClientContainer)context.getBean("clientContainer");
-        // AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
-        // clientContainer = context.getBean(ClientContainer.class);
-        // transactionContainer = context.getBean(TransactionContainer.class);
-        // context.close();
 
         if (!clientContainer.accountExists(accountNumber)) {
             throw new InvalidAccountException();

@@ -48,10 +48,6 @@ public class WithdrawalService implements IWithdrawalService {
         transactionContainer = (TransactionContainer)context.getBean("transactionContainer");
         clientContainer = (ClientContainer)context.getBean("clientContainer");
         cashContainer = (CashContainer)context.getBean("cashContainer");
-        // AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
-        // cashContainer = context.getBean(CashContainer.class);
-        // clientContainer = context.getBean(ClientContainer.class);
-        // context.close();
         Double overdraft = 0.0;
         Double clientBalance = balanceService.checkBalance(pin, accountNumber);
         Double result = 0.0;
@@ -94,13 +90,6 @@ public class WithdrawalService implements IWithdrawalService {
         transactionContainer = (TransactionContainer)context.getBean("transactionContainer");
         clientContainer = (ClientContainer)context.getBean("clientContainer");
         cashContainer = (CashContainer)context.getBean("cashContainer");
-
-        // AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
-        // cashContainer = context.getBean(CashContainer.class);
-        // clientContainer = context.getBean(ClientContainer.class);
-        // transactionContainer = context.getBean(TransactionContainer.class);
-        // context.close();
-
         boolean amountIsAvailable = false;
         TreeMap<Integer, Integer> withdrawalNotes = null;
 
@@ -117,8 +106,10 @@ public class WithdrawalService implements IWithdrawalService {
 
                 if (amount > (clientBalance + client.getOverdraft())) {
                     throw new InsuficientFundsException();
+
                 } else if (amount > cashContainer.getTotalCash()) {
                     throw new InsuficientCashException();
+
                 } else {
                     withdrawalNotes = cashContainer.calculateWithdrawal(amount);
                     amountIsAvailable = amount == withdrawalNotes.entrySet().stream().mapToInt(e -> e.getKey() * e
@@ -126,6 +117,7 @@ public class WithdrawalService implements IWithdrawalService {
 
                     if (!amountIsAvailable) {
                         throw new UnavailableAmountException();
+
                     } else {
                         transactionContainer.addTransaction(accountNumber, new Double(-amount));
                         cashContainer.dispenseNotes(withdrawalNotes);
